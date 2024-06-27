@@ -25,14 +25,14 @@ public class Ordenador {
 
             if (posicion != -1) { // Si se encuentra la posición de la tupla
                 NodoReduce bufferReducer = listaOrdenada.get(posicion);
-                bufferReducer.agregarTuplaAlstTupla(valorParClaveValor);
+                bufferReducer.agregarParCVAlstParClaveValor(valorParClaveValor);
                 listaOrdenada.set(posicion, bufferReducer);
             } else { // Si no se encuentra, se agrega como una nueva entrada
                 ArrayList<Object> valoresTemporales = new ArrayList<>();
                 valoresTemporales.add(valorParClaveValor.getValor());
-                ArrayList<ParClaveValor> nuevaListaTuplas = new ArrayList<>();
-                nuevaListaTuplas.add(new ParClaveValor(valorParClaveValor.getClave(), valoresTemporales));
-                listaOrdenada.add(new NodoReduce(clave, nuevaListaTuplas));
+                ArrayList<ParClaveValor> nuevaListaParClaveValor = new ArrayList<>();
+                nuevaListaParClaveValor.add(new ParClaveValor(valorParClaveValor.getClave(), valoresTemporales));
+                listaOrdenada.add(new NodoReduce(clave, nuevaListaParClaveValor));
             }
         }
     }

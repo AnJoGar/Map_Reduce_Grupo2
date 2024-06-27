@@ -51,7 +51,7 @@ public class Tarea {
        
         System.out.println("Iniciando proceso de Reduce");
         for (NodoReduce bufferReducer : listaOrdenada) {
-            ArrayList<ParClaveValor> listaTuplasReducer  = bufferReducer.getLstTuplas();
+            ArrayList<ParClaveValor> listaTuplasReducer  = bufferReducer.getLstParClaveValor();
             for (ParClaveValor tuplaReducer : listaTuplasReducer ) {
                 reduceFunction.reduce(tuplaReducer, resultado);
             }
