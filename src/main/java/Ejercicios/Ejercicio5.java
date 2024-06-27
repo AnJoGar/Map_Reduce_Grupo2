@@ -19,13 +19,16 @@ public class Ejercicio5 {
 
             @Override
             public void Map(ParClaveValor elemento, ArrayList<ParClaveValor> output) {
-                String[] line = elemento.getValor().toString().split(",");
-                double rainfall = Double.parseDouble(line[5]);
-                if (rainfall > 0) {
-                    double relativeHumidity = Double.parseDouble(line[9]);
-                    double windChill = Double.parseDouble(line[12]);
-                    String result = rainfall + ", " + relativeHumidity + ", " + windChill;
-                    output.add(new ParClaveValor("rainfall_data", result));
+                String[] lines = elemento.getValor().toString().split(" ");
+                for (String line : lines) {
+                    String[] items = line.split(",");
+                    double rainfall = Double.parseDouble(items[5]);
+                    if (rainfall > 0) {
+                        double relativeHumidity = Double.parseDouble(items[9]);
+                        double windChill = Double.parseDouble(items[12]);
+                        String result = rainfall + ", " + relativeHumidity + ", " + windChill;
+                        output.add(new ParClaveValor("data", result));
+                    }
                 }
             }
         });

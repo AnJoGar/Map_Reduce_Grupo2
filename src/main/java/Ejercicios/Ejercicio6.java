@@ -1,4 +1,3 @@
-
 package Ejercicios;
 
 import Framerwork.MapReduce;
@@ -14,16 +13,19 @@ import java.util.List;
  * @author andjo
  */
 public class Ejercicio6 {
+
     public static void main(String[] args) {
         Tarea tarea1 = new Tarea();
         tarea1.setMapFunction(new NodoMap() {
             /**
              * calcula la temperatura en superficie mínima y máxima
+             *
              * @param elemento ParClaveValor
-             * @param output   ArrayList que permite agregar las tuplas que queremos.
+             * @param output ArrayList que permite agregar las tuplas que
+             * queremos.
              */
             @Override
-                public void Map(ParClaveValor elemento, ArrayList<ParClaveValor> output) {
+            public void Map(ParClaveValor elemento, ArrayList<ParClaveValor> output) {
                 String[] line = elemento.getValor().toString().split(" ");
                 List<Double> listNumeros = new ArrayList<>();
                 for (String item : line) {
