@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Ejercicios;
-import Framerwork.Particionador;
+
 import Framerwork.MapReduce;
 import Framerwork.Tarea;
 import Framerwork.ParClaveValor;
@@ -12,13 +8,12 @@ import Framerwork.NodoMap;
 
 /**
  *
- * @author andjo
+ * @author John Fernandez
  */
-public class Ejercicio1  {
+public class Ejercicio1 {
 
-    
-    
-     static class Map implements NodoMap {
+    static class Map implements NodoMap {
+
         @Override
         public void Map(ParClaveValor elemento, ArrayList<ParClaveValor> output) {
             String[] palabras = elemento.getValor().toString().split(" ");
@@ -28,23 +23,23 @@ public class Ejercicio1  {
                     output.add(new ParClaveValor(nuevaPalabra, 1));
                 }
             }
-     }
+        }
     }
-          
-     static class Reduce implements MapReduce {
+
+    static class Reduce implements MapReduce {
 
         @Override
         public void reduce(ParClaveValor tupla, ArrayList<ParClaveValor> output) {
             ArrayList<Integer> lista = (ArrayList<Integer>) tupla.getValor();
-            int contador  = 0;
-            for (Integer valor: lista) {
-                contador  += valor;
+            int contador = 0;
+            for (Integer valor : lista) {
+                contador += valor;
             }
-            output.add(new ParClaveValor(tupla.getClave(), contador ));
+            output.add(new ParClaveValor(tupla.getClave(), contador));
         }
     }
 
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         Tarea t = new Tarea();
         t.setInputFile("weblog.txt");
         t.setOutputfile("Ejercicio1.txt");
@@ -52,5 +47,5 @@ public class Ejercicio1  {
         t.setMapFunction(new Map());
         t.setReduceFunction(new Reduce());
         t.run();
-    }  
+    }
 }
