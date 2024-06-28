@@ -11,6 +11,8 @@ public interface NodoMap {
  
 
     public void Map(ParClaveValor elemento, ArrayList<ParClaveValor> output);
-   
+    
     
 }
+
+

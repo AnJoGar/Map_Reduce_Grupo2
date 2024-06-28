@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 public interface MapReduce {
      void reduce(ParClaveValor elemento, ArrayList<ParClaveValor> output);
+     
+     
 }
 
 
