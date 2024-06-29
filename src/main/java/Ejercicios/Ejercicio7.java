@@ -19,6 +19,7 @@ import Framerwork.NodoMap;
 public class Ejercicio7 {
     public static void main(String[] args) {
         Tarea tarea = new Tarea();
+        
         tarea.setMapFunction(new NodoMap() {
 
             @Override
@@ -26,25 +27,32 @@ public class Ejercicio7 {
                 String[] line = elemento.getValor().toString().split(" ");
                 for (String item : line) {
                     String[] lineData = item.split("\\t");
-                    double happiness_average = Double.parseDouble(lineData[2]);
-                    if (happiness_average < 2 && !lineData[4].equals("--")) {
-                        output.add(new ParClaveValor("palabras_extremadamente_triste", 1));
+                    try{
+                        double happiness_average = Double.parseDouble(lineData[2]);
+                        if (happiness_average < 2 && !lineData[4].equals("--")) {
+                            output.add(new ParClaveValor("palabras_demasiado_tristes", 1));
+                        }
+                    }catch (NumberFormatException e){
+                        System.err.println("Error parsing happiness_average: " + lineData[2]);
                     }
                 }
+
             }
         });
+        
         tarea.setReduceFunction(new MapReduce() {
 
             @Override
             public void reduce(ParClaveValor elemento, ArrayList<ParClaveValor> output) {
-                ArrayList<Integer> list = (ArrayList<Integer>) elemento.getValor();
-                int count = 0;
-                for (Integer item : list) {
-                    count += item;
-                }
-                output.add(new ParClaveValor(elemento.getClave(), count));
+                String palabra = (String) elemento.getClave();
+                ArrayList<String> palabras_extremadamente_tristes = (ArrayList<String>) elemento.getValor();
+                
+                int count = palabras_extremadamente_tristes.size();
+                output.add(new ParClaveValor(palabra, count));
+
             }
         });
+        
         tarea.setInputFile("happiness.txt");
         tarea.setOutputfile("Ejercicio7.txt");
         tarea.setNode(30);
